@@ -1,8 +1,10 @@
 using System;
 using Sources.Modules.Chair.Scripts.Data;
+using Sources.Modules.Shop.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Zenject;
 
 namespace Sources.Modules.Chair.Scripts
 {
@@ -12,11 +14,12 @@ namespace Sources.Modules.Chair.Scripts
         [SerializeField] private TMP_Text _priceText;
         [SerializeField] private TMP_Text _descriptionText;
         
-        private Transform _parent;
-        
-        private void Awake()
+        private ShopContainer _shopContainer;
+
+        [Inject]
+        public void Construct(ShopContainer shopContainer)
         {
-            _parent = transform.parent;
+            _shopContainer = shopContainer;
         }
 
         public void Init(ChairData chairData)
@@ -33,7 +36,7 @@ namespace Sources.Modules.Chair.Scripts
 
         public void SetDefaultParent()
         {
-            transform.SetParent(_parent, false);
+            transform.SetParent(_shopContainer.transform, false);
             transform.SetAsLastSibling();
         }
     }

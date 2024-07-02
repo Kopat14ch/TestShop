@@ -1,4 +1,5 @@
 using Sources.Modules.Chair.Scripts;
+using Sources.Modules.Chair.Scripts.Data;
 using Sources.Modules.Preloader.Scripts;
 using Sources.Modules.Purchases.Scripts;
 using Sources.Modules.Shop.Scripts;
@@ -17,6 +18,8 @@ namespace Sources.Modules.Installers.Scripts
         [SerializeField] private PurchasesController _purchasesController;
         [SerializeField] private PurchaseController _purchasePrefab;
         [SerializeField] private PurchasesContainer _purchasesContainer;
+        [SerializeField] private Canvas _baseCanvas;
+        [SerializeField] private ChairsSpriteData _chairsSpriteData;
         [SerializeField] private string _charisApiUrl;
         [SerializeField] private string _basePath;
 
@@ -24,6 +27,7 @@ namespace Sources.Modules.Installers.Scripts
         {
             BindShop();
             BindPurchase();
+            BindCanvas();
         }
         
         private void BindShop()
@@ -36,7 +40,8 @@ namespace Sources.Modules.Installers.Scripts
                 _chairPrefab,
                 _shopContainer,
                 _tooltipTempParent,
-                _purchasesController,
+                Container,
+                _chairsSpriteData,
                 _basePath);
 
             ShopService shopService = new ShopService(shopFactory);
@@ -46,17 +51,24 @@ namespace Sources.Modules.Installers.Scripts
                 .FromInstance(shopService)
                 .AsSingle()
                 .NonLazy();
+
+            Container.Bind<ShopContainer>().FromInstance(_shopContainer).AsSingle().NonLazy();
         }
 
         private void BindPurchase()
         {
-            PurchaseFactory factory = new PurchaseFactory(_purchasePrefab,_purchasesContainer);
+            PurchaseFactory factory = new PurchaseFactory(_purchasePrefab,_purchasesContainer, _chairsSpriteData, Container);
 
             Container
                 .Bind<PurchaseFactory>()
                 .FromInstance(factory)
                 .AsSingle()
                 .NonLazy();
+        }
+
+        private void BindCanvas()
+        {
+            Container.Bind<Canvas>().FromInstance(_baseCanvas).AsSingle().NonLazy();
         }
     }
 }

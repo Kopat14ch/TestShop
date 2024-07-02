@@ -4,21 +4,25 @@ using System.Globalization;
 using System.Text;
 using Cysharp.Threading.Tasks;
 using Sources.Extensions.Scripts;
+using Sources.Modules.Chair.Scripts;
 using Sources.Modules.Chair.Scripts.Data;
+using Sources.Modules.Preloader.Scripts;
 using Sources.Modules.Purchases.Scripts.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using Zenject;
 
 namespace Sources.Modules.Purchases.Scripts
 {
-    public class PurchasesController : MonoBehaviour
+    public class PurchasesController : MonoBehaviour, IDropHandler
     {
         [SerializeField] private TMP_Text _totalPriceText;
         [SerializeField] private Button _checkoutButton;
         [SerializeField] private string _sendUrl;
+        [SerializeField] private PreloaderController _preloaderController;
         
         private List<PurchaseController> _purchaseControllers;
         private PurchaseFactory _purchaseFactory;
@@ -40,12 +44,12 @@ namespace Sources.Modules.Purchases.Scripts
         private void OnDisable()
         {
             foreach (var purchaseController in _purchaseControllers)
-                purchaseController.RemoveButtonClicked -= RemoveAllId;
+                purchaseController.Removed -= RemoveAllId;
             
             _checkoutButton.onClick.RemoveListener(CheckoutButtonClick);
         }
 
-        public void AddPurchase(ChairData data)
+        private void AddPurchase(ChairData data)
         {
             foreach (var currentPurchaseController in _purchaseControllers)
             {
@@ -58,13 +62,21 @@ namespace Sources.Modules.Purchases.Scripts
             }
             
             PurchaseController controller = _purchaseFactory.Create(data);
-            controller.RemoveButtonClicked += RemoveAllId;
+            controller.Removed += RemoveAllId;
             _purchaseControllers.Add(controller);
             UpdateTotalPrice();
+        }
+        
+        public void OnDrop(PointerEventData eventData)
+        {
+            if (eventData.pointerDrag != null && eventData.pointerDrag.TryGetComponent(out ChairController chairController))
+                AddPurchase(chairController.Data);
         }
 
         private void CheckoutButtonClick()
         {
+            _preloaderController.Enable();
+            
             CheckoutData data = new CheckoutData();
             List<PurchaseData> purchasesData = new List<PurchaseData>();
             
@@ -100,6 +112,8 @@ namespace Sources.Modules.Purchases.Scripts
             {
                 Debug.LogException(e);
             }
+            
+            _preloaderController.Disable();
         }
 
         private void RemoveAllId(int id)
@@ -108,7 +122,7 @@ namespace Sources.Modules.Purchases.Scripts
             {
                 if (purchaseController.CurrentPurchaseData.Id == id)
                 {
-                    purchaseController.RemoveButtonClicked -= RemoveAllId;
+                    purchaseController.Removed -= RemoveAllId;
                     _purchaseControllers.Remove(purchaseController);
                     Destroy(purchaseController.gameObject);
                     UpdateTotalPrice();

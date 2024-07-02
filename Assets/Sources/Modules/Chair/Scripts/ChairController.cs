@@ -1,16 +1,20 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Sources.Extensions.Scripts;
 using Sources.Modules.Chair.Scripts.Data;
+using Sources.Modules.Drag.Scripts;
 using Sources.Modules.Purchases.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Sources.Modules.Chair.Scripts
 {
+    [RequireComponent(typeof(DragController))]
     public class ChairController : MonoBehaviour,
-        IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerClickHandler
+        IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IBeginDragHandler, IEndDragHandler
     {
         [field: SerializeField] public Image MyImage { get; private set; }
         [field: SerializeField] public TMP_Text NameText { get; private set; }
@@ -20,25 +24,34 @@ namespace Sources.Modules.Chair.Scripts
         [SerializeField] private TooltipController _tooltipController;
         
         private Transform _tooltipTempParent;
-        private PurchasesController _purchasesController;
-        private ChairData _data;
+        private DragController _drag;
+        
+        public ChairData Data { get; private set; }
 
-        public void Init(Transform tooltipTempParent, ChairData data, PurchasesController purchasesController)
+        public void Init(Transform tooltipTempParent, ChairData data)
         {
-            _data = data;
-            _purchasesController = purchasesController;
+            Data = data;
             _tooltipTempParent = tooltipTempParent;
-            _tooltipController.Init(_data);
+            _tooltipController.Init(Data);
+            _drag = GetComponent<DragController>();
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            DisableToolTip();
+            
+            if (_drag.GetDragging())
+                return;
+            
             _tooltipController.Enable();
             _tooltipController.SetNewParent(_tooltipTempParent);
         }
         
         public void OnPointerMove(PointerEventData eventData)
         {
+            if (_drag.GetDragging())
+                return;
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 (RectTransform)_tooltipController.transform.parent, 
                 eventData.position, 
@@ -51,19 +64,33 @@ namespace Sources.Modules.Chair.Scripts
         
         public void OnPointerExit(PointerEventData eventData)
         {
-            _tooltipController.Disable();
-            _tooltipController.SetDefaultParent();
+            if (_drag.GetDragging())
+                return;
+            
+            DisableToolTip();
         }
         
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            _purchasesController.AddPurchase(_data);
-        }
-        
-
         private void UpdateToolTipLocalPosition(Vector2 position)
         {
             _tooltipController.transform.localPosition = position;
+        }
+
+        private void DisableToolTip()
+        {
+            _tooltipController.Disable();
+            _tooltipController.SetDefaultParent();
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            DisableToolTip();
+        }
+
+        public async void OnEndDrag(PointerEventData eventData)
+        {
+            await UniTask.WaitUntil(() => _drag.GetDragging());
+            
+            DisableToolTip();
         }
     }
 }

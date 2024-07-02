@@ -537,6 +537,8 @@ GameObject:
   - component: {fileID: 9165326751711670156}
   - component: {fileID: 1491918446183360966}
   - component: {fileID: 7718294220568225171}
+  - component: {fileID: 7189775784211102273}
+  - component: {fileID: 7207432743799388370}
   m_Layer: 5
   m_Name: Chair
   m_TagString: Untagged
@@ -634,6 +636,38 @@ MonoBehaviour:
   <PriceText>k__BackingField: {fileID: 3161873132733253631}
   <Price>k__BackingField: 0
   _tooltipController: {fileID: 7797266800684066724}
+--- !u!114 &7189775784211102273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315561827862779813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dbc748f28b4ea4e8543472cc25d597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7207432743799388370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315561827862779813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &3850909389690144775
 GameObject:
   m_ObjectHideFlags: 0

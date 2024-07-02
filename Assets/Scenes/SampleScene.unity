@@ -401,6 +401,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94232544}
   m_CullTransparentMesh: 1
+--- !u!1 &115409540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 115409541}
+  - component: {fileID: 115409544}
+  - component: {fileID: 115409543}
+  - component: {fileID: 115409542}
+  m_Layer: 5
+  m_Name: PreloaderControllerFullScrene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &115409541
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115409540}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1733008101}
+  m_Father: {fileID: 784503028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -0.000015258789, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &115409542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115409540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be33d97033b4874cb8573996404a089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &115409543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115409540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &115409544
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115409540}
+  m_CullTransparentMesh: 1
 --- !u!1 &138433720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalPriceText: {fileID: 1282127051}
+  _checkoutButton: {fileID: 94232546}
+  _sendUrl: https://impulsedao.xyz/warpacks/api/tests/checkout.php
+  _preloaderController: {fileID: 115409542}
 --- !u!1 &373881990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,6 +1387,73 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &593825689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593825691}
+  - component: {fileID: 593825690}
+  m_Layer: 0
+  m_Name: ChairsSpriteData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &593825690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593825689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce8ddacda324af9bfcd6750345635f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chairsSpriteData:
+  - Id: 1
+    CurrentSprite: {fileID: 21300000, guid: 2579368d8e4ee2945adaaf9ce4c89e92, type: 3}
+  - Id: 2
+    CurrentSprite: {fileID: 21300000, guid: 3666df38707653e41aa87f652537ae67, type: 3}
+  - Id: 3
+    CurrentSprite: {fileID: 21300000, guid: 29b518bb1b5451142932318a331cf958, type: 3}
+  - Id: 4
+    CurrentSprite: {fileID: 21300000, guid: 886988cdb5be92f4c9ee09c47ffac9fc, type: 3}
+  - Id: 5
+    CurrentSprite: {fileID: 21300000, guid: 7e84514a3777d4e449137029f05143a6, type: 3}
+  - Id: 6
+    CurrentSprite: {fileID: 21300000, guid: 05bf2e239f377b54fbe665942c33e44d, type: 3}
+  - Id: 7
+    CurrentSprite: {fileID: 21300000, guid: 4a874ab8df5a3eb41a9f9a7316493773, type: 3}
+  - Id: 8
+    CurrentSprite: {fileID: 21300000, guid: 78789b2564e34e74b9ead2862dc1cf12, type: 3}
+  - Id: 9
+    CurrentSprite: {fileID: 21300000, guid: 10fc87f6025c21846bdbf005ba968241, type: 3}
+  - Id: 10
+    CurrentSprite: {fileID: 21300000, guid: 13cdc52ec7c1ae446b499260fe5fd330, type: 3}
+  - Id: 11
+    CurrentSprite: {fileID: 21300000, guid: 83302be1dcab3df40b01163901f8e119, type: 3}
+--- !u!4 &593825691
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593825689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.360345, y: 3.0318277, z: 6774.1816}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684577148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1628,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1431555679}
+  - {fileID: 115409541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1819,6 +1979,7 @@ GameObject:
   - component: {fileID: 1604061981}
   - component: {fileID: 1604061984}
   - component: {fileID: 1604061982}
+  - component: {fileID: 1604061985}
   m_Layer: 5
   m_Name: Scroll View Shop
   m_TagString: Untagged
@@ -1885,6 +2046,128 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604061980}
   m_CullTransparentMesh: 1
+--- !u!114 &1604061985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604061980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696ca7e13a7b4b538397e07e2558b330, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1733008100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733008101}
+  - component: {fileID: 1733008103}
+  - component: {fileID: 1733008102}
+  m_Layer: 0
+  m_Name: Preloader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1733008101
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733008100}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 115409541}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1733008102
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733008100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f3e314804f58e98498426f69c51ae089, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1733008103
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733008100}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 645479933, guid: 2974002e1636bf949b7a6b31f02ecc74, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1915908964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,6 +2205,8 @@ MonoBehaviour:
   _purchasesController: {fileID: 333986654}
   _purchasePrefab: {fileID: 7508907101566548562, guid: a5d3206dfdf71f94483257fcfd3083d8, type: 3}
   _purchasesContainer: {fileID: 174171288}
+  _baseCanvas: {fileID: 784503027}
+  _chairsSpriteData: {fileID: 593825690}
   _charisApiUrl: https://impulsedao.xyz/warpacks/api/tests/get_shopitems_list.php
   _basePath: Chair/Sprites
 --- !u!114 &1915908966
@@ -1979,3 +2264,4 @@ SceneRoots:
   - {fileID: 1915908967}
   - {fileID: 54821008}
   - {fileID: 784503028}
+  - {fileID: 593825691}

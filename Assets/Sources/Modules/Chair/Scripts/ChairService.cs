@@ -9,12 +9,14 @@ namespace Sources.Modules.Chair.Scripts
     {
         private readonly ChairController _chairController;
         private readonly ChairData _data;
+        private readonly ChairsSpriteData _spriteData;
         private readonly string _basePath;
 
-        public ChairService(ChairController chairController, ChairData data, string basePath)
+        public ChairService(ChairController chairController, ChairData data, ChairsSpriteData spriteData, string basePath)
         {
             _chairController = chairController;
             _data = data;
+            _spriteData = spriteData;
             _basePath = basePath;
         }
 
@@ -22,7 +24,9 @@ namespace Sources.Modules.Chair.Scripts
         {
             _chairController.NameText.text = _data.name;
             _chairController.PriceText.text = $"${_data.price}";
-            _chairController.MyImage.sprite = Resources.Load<Sprite>($"{_basePath}/{Path.GetFileNameWithoutExtension(_data.filename)}");
+
+            if (_spriteData.TryGetSprite(out Sprite sprite, _data.id))
+                _chairController.MyImage.sprite = sprite;
         }
     }
 }

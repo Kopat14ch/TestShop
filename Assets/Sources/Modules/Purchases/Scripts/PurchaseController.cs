@@ -13,21 +13,23 @@ namespace Sources.Modules.Purchases.Scripts
 {
     public class PurchaseController : MonoBehaviour
     {
-        [SerializeField] public Button _removeButton;
-        [field: SerializeField] public TMP_Text NameText { get; private set; }
-        [field: SerializeField] public TMP_Text PriceText { get; private set; }
-        [field: SerializeField] public TMP_Text QuantityText { get; private set; }
-        [field: SerializeField] public TMP_Text TotalPriceText { get; private set; }
-        [field: SerializeField] public Image MyImage { get; private set; }
+        [SerializeField] private Button _removeButton;
+        [SerializeField] private TMP_Text _nameText;
+        [SerializeField] private TMP_Text _priceText;
+        [SerializeField] private TMP_Text _quantityText;
+        [SerializeField] private TMP_Text _totalPriceText;
+        [SerializeField] private Image _myImage;
 
         private ChairData _chairData;
+        private ChairsSpriteData _spriteData;
 
-        public event Action<int> RemoveButtonClicked; 
+        public event Action<int> Removed; 
 
         public PurchaseData CurrentPurchaseData { get; private set; }
         
-        public void Init(ChairData chairData)
+        public void Init(ChairData chairData, ChairsSpriteData spriteData)
         {
+            _spriteData = spriteData;
             _chairData = chairData;
             CurrentPurchaseData = new PurchaseData
             {
@@ -60,9 +62,9 @@ namespace Sources.Modules.Purchases.Scripts
             UpdateAll();
         }
 
-        private void RemoveAll()
+        public void RemoveAll()
         {
-            RemoveButtonClicked?.Invoke(_chairData.id);
+            Removed?.Invoke(_chairData.id);
         }
 
         private void UpdateAll()
@@ -71,10 +73,13 @@ namespace Sources.Modules.Purchases.Scripts
             string firstWord = words[0];
             string remainingWords = string.Join(" ", words, 1, words.Length - 1);
             
-            NameText.text = $"{remainingWords}, {firstWord}";
-            PriceText.text = $"${_chairData.price}";
-            QuantityText.text = $"x{CurrentPurchaseData.Quantity}";
-            TotalPriceText.text = $"${GetTotalPrice().FormatPrice()}";
+            _nameText.text = $"{remainingWords}, {firstWord}";
+            _priceText.text = $"${_chairData.price}";
+            _quantityText.text = $"x{CurrentPurchaseData.Quantity}";
+            _totalPriceText.text = $"${GetTotalPrice().FormatPrice()}";
+            
+            if (_spriteData.TryGetSprite(out Sprite sprite, _chairData.id))
+                _myImage.sprite = sprite;
         }
 
         public int GetTotalPrice() => _chairData.price * CurrentPurchaseData.Quantity;

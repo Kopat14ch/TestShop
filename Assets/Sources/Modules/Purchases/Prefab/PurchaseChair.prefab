@@ -1099,6 +1099,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6241900928648991355}
   - component: {fileID: 7508907101566548562}
+  - component: {fileID: 2116214807694223280}
+  - component: {fileID: 2343478184199208134}
+  - component: {fileID: 387331627823869443}
   m_Layer: 5
   m_Name: PurchaseChair
   m_TagString: Untagged
@@ -1145,11 +1148,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _removeButton: {fileID: 7920985128474674445}
-  <NameText>k__BackingField: {fileID: 1611095101811705428}
-  <PriceText>k__BackingField: {fileID: 4703866085267810962}
-  <QuantityText>k__BackingField: {fileID: 7660440723656702983}
-  <TotalPriceText>k__BackingField: {fileID: 6271424196582312509}
-  <MyImage>k__BackingField: {fileID: 2524739633820909236}
+  _nameText: {fileID: 1611095101811705428}
+  _priceText: {fileID: 4703866085267810962}
+  _quantityText: {fileID: 7660440723656702983}
+  _totalPriceText: {fileID: 6271424196582312509}
+  _myImage: {fileID: 2524739633820909236}
+--- !u!114 &2116214807694223280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811470629580119225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dbc748f28b4ea4e8543472cc25d597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2343478184199208134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811470629580119225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!225 &387331627823869443
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811470629580119225}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8975803461822165088
 GameObject:
   m_ObjectHideFlags: 0
