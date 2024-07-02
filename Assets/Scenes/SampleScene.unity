@@ -722,7 +722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -400, y: 0}
+  m_AnchoredPosition: {x: -399.99994, y: 0}
   m_SizeDelta: {x: -1000, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604061982
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
+  m_ScrollSensitivity: 50
   m_Viewport: {fileID: 59912733}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -826,6 +826,7 @@ MonoBehaviour:
   _chairPrefab: {fileID: 7718294220568225171, guid: b92f3080d896fcd45b35f4256b54a77e, type: 3}
   _shopContainer: {fileID: 373881993}
   _preloaderController: {fileID: 308360354}
+  _tooltipTempParent: {fileID: 59912733}
   _charisApiUrl: https://impulsedao.xyz/warpacks/api/tests/get_shopitems_list.php
   _basePath: Chair/Sprites
 --- !u!114 &1915908966

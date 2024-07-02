@@ -1,5 +1,6 @@
 ﻿using System;
 using Sources.Extensions.Scripts;
+using Sources.Modules.Chair.Scripts.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,9 +19,10 @@ namespace Sources.Modules.Chair.Scripts
         
         private Transform _tooltipTempParent;
 
-        public void Init(Transform tooltipTempParent)
+        public void Init(Transform tooltipTempParent, ChairData data)
         {
             _tooltipTempParent = tooltipTempParent;
+            _tooltipController.Init(data);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

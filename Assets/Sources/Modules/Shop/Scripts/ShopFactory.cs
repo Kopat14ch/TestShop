@@ -44,7 +44,7 @@ namespace Sources.Modules.Shop.Scripts
             foreach (var chairData in chairsData)
             {
                 ChairController chairController = Object.Instantiate(_prefab, _container.transform);
-                chairController.Init(_tooltipTempParent);
+                chairController.Init(_tooltipTempParent, chairData);
                 chairsController.Add(chairController);
 
                 ChairService chairService = new ChairService(chairController, chairData,_basePath);
