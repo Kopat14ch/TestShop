@@ -13,18 +13,19 @@ namespace Sources.Modules.Shop.Scripts
         private readonly ChairsApiLoader _chairsApiLoader;
         private readonly ChairController _prefab;
         private readonly ShopContainer _container;
-        private readonly DiContainer _diContainer;
+        private readonly Transform _tooltipTempParent;
         private readonly string _basePath;
 
         public ShopFactory(ChairsApiLoader chairsApiLoader, 
             ChairController prefab,
             ShopContainer container,
-            DiContainer diContainer, string basePath)
+            Transform tooltipTempParent, 
+            string basePath)
         {
             _chairsApiLoader = chairsApiLoader;
             _prefab = prefab;
             _container = container;
-            _diContainer = diContainer;
+            _tooltipTempParent = tooltipTempParent;
             _basePath = basePath;
         }
 
@@ -43,14 +44,11 @@ namespace Sources.Modules.Shop.Scripts
             foreach (var chairData in chairsData)
             {
                 ChairController chairController = Object.Instantiate(_prefab, _container.transform);
+                chairController.Init(_tooltipTempParent);
                 chairsController.Add(chairController);
 
                 ChairService chairService = new ChairService(chairController, chairData,_basePath);
-                _diContainer
-                    .BindInterfacesTo<ChairService>()
-                    .FromInstance(chairService)
-                    .AsTransient()
-                    .NonLazy();
+                chairService.Init();
             }
 
             return chairsController;

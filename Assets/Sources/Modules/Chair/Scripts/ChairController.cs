@@ -1,4 +1,5 @@
-﻿using Sources.Extensions.Scripts;
+﻿using System;
+using Sources.Extensions.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,29 +16,40 @@ namespace Sources.Modules.Chair.Scripts
 
         [SerializeField] private TooltipController _tooltipController;
         
+        private Transform _tooltipTempParent;
+
+        public void Init(Transform tooltipTempParent)
+        {
+            _tooltipTempParent = tooltipTempParent;
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             _tooltipController.Enable();
+            _tooltipController.SetNewParent(_tooltipTempParent);
         }
         
         public void OnPointerMove(PointerEventData eventData)
         {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)_tooltipController.transform.parent, 
+                eventData.position, 
+                eventData.pressEventCamera, 
+                out var localPosition
+            );
             
-            UpdateToolTipLocalPosition(worldPosition);
+            UpdateToolTipLocalPosition(localPosition);
         }
         
         public void OnPointerExit(PointerEventData eventData)
         {
             _tooltipController.Disable();
+            _tooltipController.SetDefaultParent();
         }
 
         private void UpdateToolTipLocalPosition(Vector2 position)
         {
-            Vector3 localPosition = _tooltipController.transform.parent.InverseTransformPoint(position);
-            localPosition.z = 0;
-            _tooltipController.transform.localPosition = localPosition;
-            _tooltipController.transform.SetAsLastSibling();
+            _tooltipController.transform.localPosition = position;
         }
     }
 }

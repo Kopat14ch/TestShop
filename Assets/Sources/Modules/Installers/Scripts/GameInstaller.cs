@@ -12,6 +12,7 @@ namespace Sources.Modules.Installers.Scripts
         [SerializeField] private ChairController _chairPrefab;
         [SerializeField] private ShopContainer _shopContainer;
         [SerializeField] private PreloaderController _preloaderController;
+        [SerializeField] private Transform _tooltipTempParent;
         [SerializeField] private string _charisApiUrl;
         [SerializeField] private string _basePath;
 
@@ -29,7 +30,7 @@ namespace Sources.Modules.Installers.Scripts
             ShopFactory shopFactory = new ShopFactory(chairsApiLoader,
                 _chairPrefab,
                 _shopContainer,
-                Container,
+                _tooltipTempParent,
                 _basePath);
 
             ShopService shopService = new ShopService(shopFactory);

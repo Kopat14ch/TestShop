@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Sources.Modules.Chair.Scripts
 {
-    public class ChairService : IInitializable
+    public class ChairService
     {
         private readonly ChairController _chairController;
         private readonly ChairData _data;
@@ -18,7 +18,7 @@ namespace Sources.Modules.Chair.Scripts
             _basePath = basePath;
         }
 
-        public void Initialize()
+        public void Init()
         {
             _chairController.NameText.text = _data.name;
             _chairController.PriceText.text = $"${_data.price}";
