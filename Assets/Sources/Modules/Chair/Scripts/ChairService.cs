@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using Sources.Modules.Chair.Scripts.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Sources.Modules.Chair.Scripts
 {
-    public class ChairService
+    public class ChairService : IInitializable
     {
         private readonly ChairController _chairController;
         private readonly ChairData _data;
@@ -15,11 +16,9 @@ namespace Sources.Modules.Chair.Scripts
             _chairController = chairController;
             _data = data;
             _basePath = basePath;
-
-            Init();
         }
 
-        private void Init()
+        public void Initialize()
         {
             _chairController.NameText.text = _data.name;
             _chairController.PriceText.text = $"${_data.price}";

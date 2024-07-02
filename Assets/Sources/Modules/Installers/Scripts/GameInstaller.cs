@@ -1,4 +1,5 @@
 using Sources.Modules.Chair.Scripts;
+using Sources.Modules.Preloader.Scripts;
 using Sources.Modules.Shop.Scripts;
 using Sources.Modules.Shop.Scripts.Api;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Sources.Modules.Installers.Scripts
     {
         [SerializeField] private ChairController _chairPrefab;
         [SerializeField] private ShopContainer _shopContainer;
+        [SerializeField] private PreloaderController _preloaderController;
         [SerializeField] private string _charisApiUrl;
         [SerializeField] private string _basePath;
 
@@ -20,7 +22,7 @@ namespace Sources.Modules.Installers.Scripts
         
         private void BindShop()
         {
-            ChairsApiLoader chairsApiLoader = new ChairsApiLoader(_charisApiUrl);
+            ChairsApiLoader chairsApiLoader = new ChairsApiLoader(_preloaderController,_charisApiUrl);
 
             Container.Bind<ChairsApiLoader>().FromInstance(chairsApiLoader).AsSingle().NonLazy();
             
