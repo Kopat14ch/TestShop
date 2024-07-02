@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Sources.Modules.Chair.Scripts;
 using Sources.Modules.Chair.Scripts.Data;
+using Sources.Modules.Purchases.Scripts;
 using Sources.Modules.Shop.Scripts.Api;
 using UnityEngine;
 using Zenject;
@@ -14,18 +15,21 @@ namespace Sources.Modules.Shop.Scripts
         private readonly ChairController _prefab;
         private readonly ShopContainer _container;
         private readonly Transform _tooltipTempParent;
+        private readonly PurchasesController _purchasesController;
         private readonly string _basePath;
 
         public ShopFactory(ChairsApiLoader chairsApiLoader, 
             ChairController prefab,
             ShopContainer container,
-            Transform tooltipTempParent, 
+            Transform tooltipTempParent,
+            PurchasesController purchasesController, 
             string basePath)
         {
             _chairsApiLoader = chairsApiLoader;
             _prefab = prefab;
             _container = container;
             _tooltipTempParent = tooltipTempParent;
+            _purchasesController = purchasesController;
             _basePath = basePath;
         }
 
@@ -44,7 +48,7 @@ namespace Sources.Modules.Shop.Scripts
             foreach (var chairData in chairsData)
             {
                 ChairController chairController = Object.Instantiate(_prefab, _container.transform);
-                chairController.Init(_tooltipTempParent, chairData);
+                chairController.Init(_tooltipTempParent, chairData, _purchasesController);
                 chairsController.Add(chairController);
 
                 ChairService chairService = new ChairService(chairController, chairData,_basePath);

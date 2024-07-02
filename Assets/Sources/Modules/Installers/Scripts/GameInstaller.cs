@@ -1,5 +1,6 @@
 using Sources.Modules.Chair.Scripts;
 using Sources.Modules.Preloader.Scripts;
+using Sources.Modules.Purchases.Scripts;
 using Sources.Modules.Shop.Scripts;
 using Sources.Modules.Shop.Scripts.Api;
 using UnityEngine;
@@ -13,12 +14,16 @@ namespace Sources.Modules.Installers.Scripts
         [SerializeField] private ShopContainer _shopContainer;
         [SerializeField] private PreloaderController _preloaderController;
         [SerializeField] private Transform _tooltipTempParent;
+        [SerializeField] private PurchasesController _purchasesController;
+        [SerializeField] private PurchaseController _purchasePrefab;
+        [SerializeField] private PurchasesContainer _purchasesContainer;
         [SerializeField] private string _charisApiUrl;
         [SerializeField] private string _basePath;
 
         public override void InstallBindings()
         {
             BindShop();
+            BindPurchase();
         }
         
         private void BindShop()
@@ -31,6 +36,7 @@ namespace Sources.Modules.Installers.Scripts
                 _chairPrefab,
                 _shopContainer,
                 _tooltipTempParent,
+                _purchasesController,
                 _basePath);
 
             ShopService shopService = new ShopService(shopFactory);
@@ -38,6 +44,17 @@ namespace Sources.Modules.Installers.Scripts
             Container
                 .BindInterfacesTo<ShopService>()
                 .FromInstance(shopService)
+                .AsSingle()
+                .NonLazy();
+        }
+
+        private void BindPurchase()
+        {
+            PurchaseFactory factory = new PurchaseFactory(_purchasePrefab,_purchasesContainer);
+
+            Container
+                .Bind<PurchaseFactory>()
+                .FromInstance(factory)
                 .AsSingle()
                 .NonLazy();
         }

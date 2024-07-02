@@ -1,6 +1,7 @@
 ﻿using System;
 using Sources.Extensions.Scripts;
 using Sources.Modules.Chair.Scripts.Data;
+using Sources.Modules.Purchases.Scripts;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,8 @@ using UnityEngine.UI;
 
 namespace Sources.Modules.Chair.Scripts
 {
-    public class ChairController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
+    public class ChairController : MonoBehaviour,
+        IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, IPointerClickHandler
     {
         [field: SerializeField] public Image MyImage { get; private set; }
         [field: SerializeField] public TMP_Text NameText { get; private set; }
@@ -18,11 +20,15 @@ namespace Sources.Modules.Chair.Scripts
         [SerializeField] private TooltipController _tooltipController;
         
         private Transform _tooltipTempParent;
+        private PurchasesController _purchasesController;
+        private ChairData _data;
 
-        public void Init(Transform tooltipTempParent, ChairData data)
+        public void Init(Transform tooltipTempParent, ChairData data, PurchasesController purchasesController)
         {
+            _data = data;
+            _purchasesController = purchasesController;
             _tooltipTempParent = tooltipTempParent;
-            _tooltipController.Init(data);
+            _tooltipController.Init(_data);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -48,6 +54,12 @@ namespace Sources.Modules.Chair.Scripts
             _tooltipController.Disable();
             _tooltipController.SetDefaultParent();
         }
+        
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _purchasesController.AddPurchase(_data);
+        }
+        
 
         private void UpdateToolTipLocalPosition(Vector2 position)
         {
